@@ -1,9 +1,9 @@
-from app.application import Application
+from app.board import Board
 
 
 class Graphic:
-    def __init__(self, app : Application):
-        self.app = app
+    def __init__(self, board : Board):
+        self.board = board
 
     def render(self):
         pass
