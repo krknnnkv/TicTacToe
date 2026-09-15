@@ -17,7 +17,7 @@ class Validator:
     def _validate_row(self, row : List[CellStatus]) -> bool:
         old_value = row[0]
         for value in row:
-            if old_value == ValidationStatus.EMPTY:
+            if old_value == CellStatus.EMPTY_FIELD:
                 return False
             elif value != old_value:
                 return False
