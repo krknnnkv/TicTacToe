@@ -30,9 +30,14 @@ if __name__ == '__main__':
     player = Player(action_manager, CellStatus.CROSS_FIELD, RandomInput())
     opponent = Player(action_manager, CellStatus.ZERO_FIELD, KeyboardInput(renderer))
     application = Application(board, [player, opponent])
-    while application.step() == ValidationStatus.EMPTY:
-        renderer.render()
+    while True:
+        while application.step() == ValidationStatus.EMPTY:
+            renderer.render()
+        renderer.render(last_validation_result=application.last_validation_result)
 
-    renderer.render(last_validation_result=application.last_validation_result)
-    wait_for_restart()
+        if not wait_for_restart():
+            break
+        board.reset()
+        application.last_validation_result = ValidationStatus.EMPTY
+
     pygame.quit()
