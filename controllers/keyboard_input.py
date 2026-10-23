@@ -2,6 +2,7 @@ from typing import Tuple, List
 
 import pygame
 
+from app.board import CellStatus, Board
 from controllers.controls import Controls
 from render.graphic import Graphic
 
@@ -17,7 +18,7 @@ class KeyboardInput(Controls):
         self.renderer = renderer
         self.cursor: Tuple[int, int] = (0, 0)
 
-    def _read_key(self, options: List[Tuple[int, int]]) -> Tuple[int, int]:
+    def _read_key(self, value: CellStatus, board: Board, options: List[Tuple[int, int]]) -> Tuple[int, int]:
         self.renderer.render(selected_cell=self.cursor)
         while True:
             event = pygame.event.wait()
