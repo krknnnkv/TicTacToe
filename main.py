@@ -8,6 +8,7 @@ from app.player import Player
 from app.validator import ValidationStatus
 from controllers import keyboard_input
 from controllers.keyboard_input import KeyboardInput
+from controllers.minimax_input import MinimaxInput
 from controllers.random_input import RandomInput
 from render.graphic import Graphic
 
@@ -27,7 +28,7 @@ if __name__ == '__main__':
     board = Board()
     action_manager = ActionManager(board)
     renderer = Graphic(board)
-    player = Player(action_manager, CellStatus.CROSS_FIELD, RandomInput())
+    player = Player(action_manager, CellStatus.CROSS_FIELD, MinimaxInput())
     opponent = Player(action_manager, CellStatus.ZERO_FIELD, KeyboardInput(renderer))
     application = Application(board, [player, opponent])
     while True:
